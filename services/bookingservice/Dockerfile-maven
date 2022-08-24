@@ -1,0 +1,25 @@
+FROM maven:3-openjdk-17 as build
+WORKDIR /helidon
+
+ADD pom.xml .
+RUN mvn package -DskipTests
+
+# Do the Maven build!
+# Incremental docker builds will resume here when you change sources
+ADD src src
+RUN mvn package -DskipTests
+RUN echo "done!"
+
+FROM openjdk:17
+WORKDIR /helidon
+
+# Copy the binary built in the 1st stage
+COPY --from=build /helidon/target/bookingservice-0.0.1-SNAPSHOT.jar ./
+COPY --from=build /helidon/target/libs ./libs
+
+CMD ["java", "-jar", "bookingservice-0.0.1-SNAPSHOT.jar"]
+
+EXPOSE 8080
+# docker build -t bookingservice .
+# docker run --network spring-bookingservice-mysql-net --name bookingservice-container -p 8080:8080 -d bookingservice
+# docker run --name mysqldb --network springmysql-net -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=bookingServiceDb -e MYSQL_USER=root -e MYSQL_PASSWORD=1234 -d mysql:5.7
