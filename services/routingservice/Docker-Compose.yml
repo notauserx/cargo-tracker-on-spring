@@ -5,7 +5,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - spring.datasource.url=jdbc:mysql://mysqldb:3306/routingServiceDb?useSSL=false
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/routingservicedb?useSSL=false
     networks:
       -  spring-routingservice-mysql-net
     depends_on:
@@ -19,7 +19,7 @@ services:
       - spring-routingservice-mysql-net
     environment:
       - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=routingServiceDb
+      - MYSQL_DATABASE=routingservicedb
       - MYSQL_USER=sa
       - MYSQL_PASSWORD=1234
 

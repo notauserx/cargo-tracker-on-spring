@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - spring.datasource.url=jdbc:mysql://mysqldb:3306/bookingServiceDb?useSSL=false
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/bookingservicedb?useSSL=false
     networks:
       -  spring-bookingservice-mysql-net
     depends_on:
@@ -20,7 +20,7 @@ services:
       - spring-bookingservice-mysql-net
     environment:
       - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=bookingServiceDb
+      - MYSQL_DATABASE=bookingservicedb
       - MYSQL_USER=sa
       - MYSQL_PASSWORD=1234
 
