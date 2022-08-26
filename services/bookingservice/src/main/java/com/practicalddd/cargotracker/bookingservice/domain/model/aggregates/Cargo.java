@@ -13,6 +13,7 @@ import org.springframework.data.domain.AbstractAggregateRoot;
 import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
 @NamedQueries({
         @NamedQuery(name = "Cargo.findAll",
                 query = "Select c from Cargo c"),
@@ -20,7 +21,6 @@ import java.util.UUID;
                 query = "Select c from Cargo c where c.bookingId = :bookingId"),
         @NamedQuery(name = "Cargo.findAllBookingIds",
                 query = "Select c.bookingId from Cargo c") })
-@Entity
 public class Cargo extends AbstractAggregateRoot<Cargo> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,6 +72,37 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
         addDomainEvent(new
                 CargoBookedEvent(
                 new CargoBookedEventData(this.bookingId.getBookingId())));
+    }
+
+    public BookingId getBookingId() {
+        return bookingId;
+    }
+
+    public void setOrigin(Location origin) {
+        this.origin = origin;
+    }
+
+    public Location getOrigin() {
+        return origin;
+    }
+
+    public RouteSpecification getRouteSpecification() {
+        return this.routeSpecification;
+    }
+
+
+    public BookingAmount getBookingAmount(){
+        return this.bookingAmount;
+    }
+
+    public void setBookingAmount(BookingAmount bookingAmount){
+        this.bookingAmount = bookingAmount;
+    }
+    /**
+     * @return The itinerary
+     */
+    public CargoItinerary getItinerary() {
+        return this.itinerary;
     }
 
     /**
