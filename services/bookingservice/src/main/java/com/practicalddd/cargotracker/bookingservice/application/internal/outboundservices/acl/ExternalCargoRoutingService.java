@@ -7,6 +7,7 @@ import com.practicalddd.cargotracker.bookingservice.domain.model.valueobjects.Ro
 import com.practicalddd.cargotracker.bookingservice.domain.model.valueobjects.Voyage;
 import com.practicalddd.cargotracker.shareddomain.model.TransitEdge;
 import com.practicalddd.cargotracker.shareddomain.model.TransitPath;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Map;
 /*
  * Anti-Corruption service layer
  */
+@Service
 public class ExternalCargoRoutingService {
     /**
      * The Booking Bounded Context makes an external call to the Routing Service of the Routing Bounded Context to

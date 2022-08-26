@@ -3,9 +3,11 @@ package com.practicalddd.cargotracker.bookingservice.application.internal.querys
 import com.practicalddd.cargotracker.bookingservice.domain.model.aggregates.BookingId;
 import com.practicalddd.cargotracker.bookingservice.domain.model.aggregates.Cargo;
 import com.practicalddd.cargotracker.bookingservice.infrastructure.repositories.CargoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CargoBookingQueryService {
     private CargoRepository cargoRepository;
 
