@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Location {
-    @Column(name = "origin_id")
+    @Column(name = "origin_id", insertable = false, updatable = false)
     private String unLocCode;
     public Location(){}
     public Location(String unLocCode){this.unLocCode = unLocCode;}
