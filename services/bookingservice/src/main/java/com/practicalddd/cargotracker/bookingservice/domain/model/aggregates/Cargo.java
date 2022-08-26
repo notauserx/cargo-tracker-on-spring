@@ -4,6 +4,8 @@ import com.practicalddd.cargotracker.bookingservice.domain.model.commands.BookCa
 import com.practicalddd.cargotracker.bookingservice.domain.model.commands.RouteCargoCommand;
 import com.practicalddd.cargotracker.bookingservice.domain.model.entities.Location;
 import com.practicalddd.cargotracker.bookingservice.domain.model.valueobjects.*;
+import com.practicalddd.cargotracker.shareddomain.events.CargoBookedEvent;
+import com.practicalddd.cargotracker.shareddomain.events.CargoBookedEventData;
 import com.practicalddd.cargotracker.shareddomain.events.CargoRoutedEvent;
 import com.practicalddd.cargotracker.shareddomain.events.CargoRoutedEventData;
 import org.springframework.data.domain.AbstractAggregateRoot;
@@ -65,6 +67,11 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
         this.bookingAmount = bookingAmount;
         this.delivery = Delivery.derivedFrom(this.routeSpecification,
                 this.itinerary, LastCargoHandledEvent.EMPTY);
+
+        //Add this domain event which needs to be fired when the new cargo is saved
+        addDomainEvent(new
+                CargoBookedEvent(
+                new CargoBookedEventData(this.bookingId.getBookingId())));
     }
 
     /**
