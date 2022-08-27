@@ -1,0 +1,49 @@
+version: "3"
+services:
+  server:
+    image: bookingservice
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/bookingservicedb?useSSL=false
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    networks:
+      - spring-bookingservice-mysql-net
+      - spring-bookingservice-rabbitmq-net
+    depends_on:
+      - mysqldb
+      - rabbitmq
+    command: java -Djava.security.egd=file:/dev/./urandom -jar /project/target/bookingservice-0.0.1-SNAPSHOT.jar
+
+  mysqldb:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    networks:
+      - spring-bookingservice-mysql-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=bookingservicedb
+      - MYSQL_USER=sa
+      - MYSQL_PASSWORD=1234
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      # AMQP protocol port
+      - 5672:5672
+      # HTTP management UI
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - spring-bookingservice-rabbitmq-net
+
+networks:
+  spring-bookingservice-mysql-net:
+  spring-bookingservice-rabbitmq-net:
