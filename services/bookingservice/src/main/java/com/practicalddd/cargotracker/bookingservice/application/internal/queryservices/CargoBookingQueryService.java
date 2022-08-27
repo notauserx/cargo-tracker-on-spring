@@ -11,6 +11,10 @@ import java.util.List;
 public class CargoBookingQueryService {
     private CargoRepository cargoRepository;
 
+    public CargoBookingQueryService(CargoRepository cargoRepository) {
+        this.cargoRepository = cargoRepository;
+    }
+
     /**
      * Find all Cargos
      * @return List<Cargo>
