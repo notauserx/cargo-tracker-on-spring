@@ -64,7 +64,7 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
 
         //Empty Itinerary since the Cargo has not been routed yet
         this.itinerary = CargoItinerary.EMPTY_ITINERARY;
-        this.bookingAmount = bookingAmount;
+        this.bookingAmount = new BookingAmount(bookCargoCommand.getBookingAmount());
         this.delivery = Delivery.derivedFrom(this.routeSpecification,
                 this.itinerary, LastCargoHandledEvent.EMPTY);
 
@@ -129,5 +129,18 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
      */
     public void addDomainEvent(Object event){
         registerEvent(event);
+    }
+
+    @Override
+    public String toString() {
+        return "Cargo{" +
+                "id=" + id +
+                ", bookingId=" + bookingId +
+                ", bookingAmount=" + bookingAmount.getBookingAmount() +
+                ", origin=" + origin +
+                ", routeSpecification=" + routeSpecification +
+                ", itinerary=" + itinerary +
+                ", delivery=" + delivery +
+                '}';
     }
 }
