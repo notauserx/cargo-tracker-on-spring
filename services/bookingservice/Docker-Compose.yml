@@ -6,8 +6,10 @@ services:
       - "8080:8080"
     environment:
       - spring.datasource.url=jdbc:mysql://mysqldb:3306/bookingservicedb?useSSL=false
+      - SPRING_RABBITMQ_HOST=rabbitmq
     networks:
-      -  spring-bookingservice-mysql-net
+      - spring-bookingservice-mysql-net
+      - spring-bookingservice-rabbitmq-net
     depends_on:
       - mysqldb
       - rabbitmq
