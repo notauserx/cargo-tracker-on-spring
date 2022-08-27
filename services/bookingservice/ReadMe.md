@@ -13,6 +13,18 @@ docker-compose up
 
 http://localhost:8080/swagger-ui.html
 
+```json
+
+{
+    "bookingAmount": 100,
+    "originLocation": "CNHKG",
+    "destLocation" : "USNYC",
+    "destArrivalDeadline" : "2019-09-28"
+}
+
+```
+
+
 ### Mysql
 
 Connect to mysql in mysql workbench using
