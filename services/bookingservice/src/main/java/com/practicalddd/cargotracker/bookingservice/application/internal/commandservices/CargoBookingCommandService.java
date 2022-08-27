@@ -28,6 +28,10 @@ public class CargoBookingCommandService {
 
         Cargo cargo = new Cargo(bookCargoCommand);
 
+        System.out.println("**** Saving cargo ***");
+        System.out.println(cargo);
+        System.out.println("*********************");
+
         cargoRepository.save(cargo);
         return new BookingId(bookCargoCommand.getBookingId());
     }
