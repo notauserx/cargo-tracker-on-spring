@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS `cargo` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BOOKING_ID` varchar(20) NOT NULL,
+  `TRANSPORT_STATUS` varchar(100) NOT NULL,
+  `ROUTING_STATUS` varchar(100) NOT NULL,
+  `spec_origin_id` varchar(20) DEFAULT NULL,
+  `spec_destination_id` varchar(20) DEFAULT NULL,
+  `SPEC_ARRIVAL_DEADLINE` date DEFAULT NULL,
+  `origin_id` varchar(20) DEFAULT NULL,
+  `BOOKING_AMOUNT` int(11) NOT NULL,
+  `handling_event_id` int(11) DEFAULT NULL,
+  `next_expected_location_id` varchar(20) DEFAULT NULL,
+  `next_expected_handling_event_type` varchar(20) DEFAULT NULL,
+  `next_expected_voyage_id` varchar(20) DEFAULT NULL,
+  `last_known_location_id` varchar(20) DEFAULT NULL,
+  `current_voyage_number` varchar(100) DEFAULT NULL,
+  `last_handling_event_id` int(11) DEFAULT NULL,
+  `last_handling_event_type` varchar(20) DEFAULT NULL,
+  `last_handling_event_location` varchar(20) DEFAULT NULL,
+  `last_handling_event_voyage` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2923;

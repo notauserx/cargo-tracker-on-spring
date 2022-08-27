@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `LEG` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LOAD_TIME` timestamp NULL DEFAULT NULL,
+  `UNLOAD_TIME` timestamp NULL DEFAULT NULL,
+  `load_location_id` varchar(20) DEFAULT NULL,
+  `unload_location_id` varchar(20) DEFAULT NULL,
+  `voyage_number` varchar(100) DEFAULT NULL,
+  `CARGO_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3095 DEFAULT CHARSET=utf8;
