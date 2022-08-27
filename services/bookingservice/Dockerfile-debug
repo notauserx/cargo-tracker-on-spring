@@ -1,0 +1,7 @@
+FROM maven:3.8.3-openjdk-17
+
+COPY . /project
+RUN  cd /project && mvn package -DskipTests
+
+#this part for debug is moved into compose file, into "command":
+#ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/project/target/demo-0.0.1-SNAPSHOT.jar"]
